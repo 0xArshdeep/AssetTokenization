@@ -11,12 +11,14 @@ chai.use(chaiAsPromised);
 
 const expect = chai.expect;
 
+require("dotenv").config({path: "C:/Users/19259/Documents/AssetTokenization/.env"});
+
 contract("Token Test", async (accounts) => {
 
     const [deployerAccount, recipient, anotherAccount]  = accounts;
 
     beforeEach(async() => {
-        this.myToken = await Token.new(1000000)
+        this.myToken = await Token.new(process.env.INITIAL_TOKENS)
     });
     
     it("All tokens should be in my account", async () => {
